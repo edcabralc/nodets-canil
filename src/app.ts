@@ -1,9 +1,9 @@
-import express, {Request, Response} from "express";
+import express from "express";
 import mustache from "mustache-express";
-import path from "path";
 import dotenv from "dotenv";
+import path from "path";
 
-import mainRouter from "./routes/mainRoutes";
+import mainRoutes from "./routes/index";
 
 dotenv.config();
 
@@ -17,6 +17,7 @@ app.use(express.static(path.join(__dirname, "../public")));
 
 app.use(express.urlencoded({extended: true}));
 
-app.use(mainRouter);
+app.use(mainRoutes);
+app.use((req, res) => res.send("Página não econtrada!"));
 
 app.listen(process.env.PORT);
