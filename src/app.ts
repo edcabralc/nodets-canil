@@ -18,6 +18,6 @@ app.use(express.static(path.join(__dirname, "../public")));
 app.use(express.urlencoded({extended: true}));
 
 app.use(mainRoutes);
-app.use((req, res) => res.send("Página não econtrada!"));
+app.use((req, res) => res.render("pages/404"));
 
 app.listen(process.env.PORT);

@@ -1,6 +1,14 @@
 import {Request, Response} from "express";
+import {createMenuOptions} from "../helpers/createMenuObject";
+import {Pet} from "../models/pet";
 
 export const searchPage = (req: Request, res: Response) => {
-  res.send("Está procurando algo?");
-  // res.render('pages/homes')
+  let query: string = req.query.q as string;
+  const list = Pet.getPetsByName(query);
+
+  res.render("pages/page", {
+    menu: createMenuOptions(""),
+    list,
+    query,
+  });
 };
